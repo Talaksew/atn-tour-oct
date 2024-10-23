@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/atn-tour-oct/static/css/main.875cdfb5.css",
-    "main.js": "/atn-tour-oct/static/js/main.10ba0f6c.js",
+    "main.js": "/atn-tour-oct/static/js/main.eaf493a4.js",
     "index.html": "/atn-tour-oct/index.html",
     "main.875cdfb5.css.map": "/atn-tour-oct/static/css/main.875cdfb5.css.map",
-    "main.10ba0f6c.js.map": "/atn-tour-oct/static/js/main.10ba0f6c.js.map"
+    "main.eaf493a4.js.map": "/atn-tour-oct/static/js/main.eaf493a4.js.map"
   },
   "entrypoints": [
     "static/css/main.875cdfb5.css",
-    "static/js/main.10ba0f6c.js"
+    "static/js/main.eaf493a4.js"
   ]
 }
