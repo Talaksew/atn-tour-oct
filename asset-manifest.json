@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Talaksew/atn-tour-oct.git/static/css/main.875cdfb5.css",
+    "main.js": "/Talaksew/atn-tour-oct.git/static/js/main.c309de9a.js",
+    "index.html": "/Talaksew/atn-tour-oct.git/index.html",
+    "main.875cdfb5.css.map": "/Talaksew/atn-tour-oct.git/static/css/main.875cdfb5.css.map",
+    "main.c309de9a.js.map": "/Talaksew/atn-tour-oct.git/static/js/main.c309de9a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.875cdfb5.css",
+    "static/js/main.c309de9a.js"
+  ]
+}
