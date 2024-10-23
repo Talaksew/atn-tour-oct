@@ -1,0 +1,182 @@
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import axios from "axios";
+import "./officers.css";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { 
+  Box,
+  Paper,
+  IconButton,
+  Button,
+} from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+
+function Pagination({ itemsPerPage, totalItems, paginate }) {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} href="#!" className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+function Users() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [authState, setAuthState] = useState({
+    isAuthenticated: false,
+    user: null,
+  });
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Set items per page
+
+  useEffect(() => {
+    console.log('Fetching items from backend...');
+    axios.get('http://127.0.0.1:4000/users_view')
+      .then(response => {
+        console.log('Items fetched successfully:', response.data);
+        setUsers(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching items:', err);
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:4000/profile', { withCredentials: true });
+        if (response.status === 200) {
+          setAuthState({
+            isAuthenticated: true,
+            user: response.data,
+          });
+        } else {
+          setAuthState({
+            isAuthenticated: false,
+            user: null,
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching user info:', error.response ? error.response.data : error.message);
+        setAuthState({
+          isAuthenticated: false,
+          user: null,
+        });
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
+  const handleEdit = (id) => {
+    console.log('Editing user with id:', id);
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://127.0.0.1:4000/users_view/${id}`)
+      .then(response => {
+        console.log('User deleted successfully');
+        setUsers(users.filter(user => user._id !== id)); // Remove deleted user from state
+      })
+      .catch(err => {
+        console.error('Error deleting user:', err);
+      });
+  };
+
+  // Pagination Logic
+  const indexOfLastUser = currentPage * itemsPerPage;
+  const indexOfFirstUser = indexOfLastUser - itemsPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleCellEditCommit = (params) => {
+    const { id, field, value } = params;
+    const updatedUsers = users.map((user) => 
+      user._id === id ? { ...user, [field]: value } : user
+    );
+    setUsers(updatedUsers);
+
+    axios.put(`http://127.0.0.1:4000/users_view/${id}`, { [field]: value })
+      .then(() => {
+        console.log(`User ${id} updated`);
+      })
+      .catch((error) => {
+        console.error('Error updating user:', error);
+      });
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading items: {error.message}</p>;
+
+  const columns = [
+    { field: '_id', headerName: 'ID', width: 70, editable: false },
+    { field: 'profile.firstName', headerName: 'First Name', width: 100, editable: false },
+    { field: 'profile.lastName', headerName: 'Last Name', width: 100, editable: false   },
+    { field: 'username', headerName: 'Email', width: 100, editable: false },
+    { field: 'isVerified', headerName: 'Verified', width: 100, editable: false },
+    { field: 'role', headerName: 'Role', width: 100, editable: true },
+    { field: 'googleID', headerName: 'Google ID', width: 100, editable: false },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 150,
+      renderCell: (params) => (
+        <div>
+          <IconButton color="primary" onClick={() => handleEdit(params.row._id)}>
+            <EditIcon />
+          </IconButton>
+          <IconButton color="secondary" onClick={() => handleDelete(params.row._id)}>
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <div>  
+    <h1 align="center">React-App</h1>
+    <h4 align="center">MUI DataGrid Bulk Update</h4>
+      <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={currentUsers}
+        columns={columns}
+        pageSize={itemsPerPage}
+        rowsPerPageOptions={[itemsPerPage]}
+        onCellEditCommit={handleCellEditCommit}
+        disableSelectionOnClick
+        checkboxSelection
+        pagination
+        getRowId={(row) => row._id} // Specify the unique identifier for each row
+      />
+      </Box>
+
+      {/* Pagination */}
+      <Pagination itemsPerPage={itemsPerPage} totalItems={users.length} paginate={paginate} />
+    </div>
+  );
+}
+
+export default Users;
