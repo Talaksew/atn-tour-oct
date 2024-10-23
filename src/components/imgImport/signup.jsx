@@ -52,7 +52,7 @@ const handleChange = (e) => {
   
   const handleGoogleLogin = () => {
     // Implement your Google login logic here
-    window.location.href = 'http://196.190.61.158:4000/auth/google';
+    window.location.href = 'http://localhost:4000/auth/google';
   }
 
 
