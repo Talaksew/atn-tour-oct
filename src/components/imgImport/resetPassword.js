@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:4000/resetPassword/${token}`, { password });
+      const response = await axios.post(`http://196.190.61.158:4000/resetPassword/${token}`, { password });
       setMessage(response.data.message);
       if (response.data.success) {
         navigate('/login');

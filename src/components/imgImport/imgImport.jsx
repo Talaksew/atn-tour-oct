@@ -71,7 +71,7 @@ function AddItem () {
       });
 
       // Send form data to backend
-      const response = await axios.post('http://localhost:4000/add', formData, {
+      const response = await axios.post('http://196.190.61.158:4000/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

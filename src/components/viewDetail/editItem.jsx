@@ -45,7 +45,7 @@ const ImageViewer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/viewDetail/${item_id}`);
+        const response = await axios.get(`http://196.190.61.158:4000/viewDetail/${item_id}`);
         setItem(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -91,7 +91,7 @@ const ImageViewer = () => {
     selectedImages.forEach((image) => formData.append('images', image));
     
     try {
-      await axios.put(`http://localhost:4000/updateItem/${item_id}`, formData, {
+      await axios.put(`http://196.190.61.158:4000/updateItem/${item_id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -123,7 +123,7 @@ const ImageViewer = () => {
           <motion.div style={{ display: 'flex', flexDirection: 'row', width: `${item?.images.length * 100}%` }} animate={{ x: `-${currentIndex * 100}%` }} transition={{ duration: 0.5 }}>
             {item?.images.map((imag, index) => (
               <Box key={index} sx={{ flexShrink: 0, width: '100%', height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={`http://localhost:4000${imag}`} alt={`Item ${index}`} loading="lazy" style={{ width: '100%', height: 'auto', maxHeight: '250px', objectFit: 'cover' }} />
+                <img src={`http://196.190.61.158:4000${imag}`} alt={`Item ${index}`} loading="lazy" style={{ width: '100%', height: 'auto', maxHeight: '250px', objectFit: 'cover' }} />
               </Box>
             ))}
           </motion.div>

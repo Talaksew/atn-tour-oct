@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/forgotPassword', { email });
+      const response = await axios.post('http://196.190.61.158:4000/forgotPassword', { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Error occurred while requesting password reset');

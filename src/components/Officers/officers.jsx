@@ -50,7 +50,7 @@ function Users() {
 
   useEffect(() => {
     console.log('Fetching items from backend...');
-    axios.get('http://127.0.0.1:4000/users_view')
+    axios.get('http://196.190.61.158:4000/users_view')
       .then(response => {
         console.log('Items fetched successfully:', response.data);
         setUsers(response.data);
@@ -66,7 +66,7 @@ function Users() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:4000/profile', { withCredentials: true });
+        const response = await axios.get('http://196.190.61.158:4000/profile', { withCredentials: true });
         if (response.status === 200) {
           setAuthState({
             isAuthenticated: true,
@@ -94,7 +94,7 @@ function Users() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://127.0.0.1:4000/users_view/${id}`)
+    axios.delete(`http://196.190.61.158:4000/users_view/${id}`)
       .then(response => {
         console.log('User deleted successfully');
         setUsers(users.filter(user => user._id !== id)); // Remove deleted user from state
@@ -118,7 +118,7 @@ function Users() {
     );
     setUsers(updatedUsers);
 
-    axios.put(`http://127.0.0.1:4000/users_view/${id}`, { [field]: value })
+    axios.put(`http://196.190.61.158:4000/users_view/${id}`, { [field]: value })
       .then(() => {
         console.log(`User ${id} updated`);
       })

@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       // Send user data to backend
-      const response = await axios.post('http://localhost:4000/login', userData, {
+      const response = await axios.post('http://196.190.61.158:4000/login', userData, {
         withCredentials: true, // Include this to ensure cookies are sent
       });
 
@@ -41,7 +41,7 @@ const Login = () => {
 //  Google login handler
   const handleGoogleLogin = () => {
     // Implement your Google login logic here
-    window.location.href = 'http://localhost:4000/auth/google';
+    window.location.href = 'http://196.190.61.158:4000/auth/google';
   
     //   console.log('Google login clicked');
     

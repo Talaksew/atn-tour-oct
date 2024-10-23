@@ -45,7 +45,7 @@ function Detail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/item_view');
+        const response = await axios.get('http://196.190.61.158:4000/item_view');
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -77,7 +77,7 @@ function Detail() {
             {currentItems.map((file) => (
               <div key={file.item_id} className="singleOffer">
                 <div className="desImage">
-                  <img src={'http://localhost:5000/public/uploads/' + file.image[0]} alt={file.item_name} />
+                  <img src={'http://196.190.61.158:5000/public/uploads/' + file.image[0]} alt={file.item_name} />
                   <span className="discount">{file.item_name}</span>
                 </div>
                 <div className="offerBody">

@@ -20,7 +20,7 @@ function App() {
   ];
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/users_view')
+    axios.get('http://196.190.61.158:4000/users_view')
       .then(response => {
         setData(response.data);
       })
@@ -33,7 +33,7 @@ function App() {
 
   const handleRowEdit = (newRow, oldRow) => {
     return new Promise((resolve, reject) => {
-      axios.put(`http://127.0.0.1:4000/users_view/${oldRow.id}`, newRow)
+      axios.put(`http://196.190.61.158:4000/users_view/${oldRow.id}`, newRow)
         .then((response) => {
           const updatedRows = [...data];
           const index = oldRow.tableData.id;
@@ -56,7 +56,7 @@ function App() {
       role: 'New Role'
     };
 
-    axios.post('http://127.0.0.1:4000/users_view', newRow)
+    axios.post('http://196.190.61.158:4000/users_view', newRow)
       .then((response) => {
         setData([...data, response.data]);
       })
@@ -68,7 +68,7 @@ function App() {
   const handleDeleteRow = () => {
     if (selectedRows.length > 0) {
       const rowToDelete = selectedRows[0];  // Deleting the first selected row
-      axios.delete(`http://127.0.0.1:4000/users_view/${rowToDelete.id}`)
+      axios.delete(`http://196.190.61.158:4000/users_view/${rowToDelete.id}`)
         .then(() => {
           setData(data.filter(row => row.id !== rowToDelete.id));
         })

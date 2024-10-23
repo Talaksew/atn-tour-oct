@@ -21,7 +21,7 @@ function ContactInfo() {
         📧 <Link href="mailto:info@yourdomain.com">info@yourdomain.com</Link>
       </Typography>
       <Typography variant="body1">
-        📞 +1 (123) 456-7890
+        📞 +251 91098 0059
       </Typography>
 
       {/* Customer Support */}
@@ -32,7 +32,7 @@ function ContactInfo() {
         📧 <Link href="mailto:support@yourdomain.com">support@yourdomain.com</Link>
       </Typography>
       <Typography variant="body1">
-        📞 +1 (123) 456-7891
+        📞 +251 910 98 0059
       </Typography>
       <Typography variant="body2" color="text.secondary">
         ⏰ Support Hours: Monday to Friday, 9:00 AM – 5:00 PM (Your Timezone)

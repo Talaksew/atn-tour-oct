@@ -22,7 +22,7 @@ const ItemsList = ({ setSelectedLink, link }) => {
   const [itemsPerPage] = useState(5);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/manage_items')
+    axios.get('http://196.190.61.158:4000/manage_items')
       .then(response => {
         setItems(response.data);
         setLoading(false);
@@ -36,7 +36,7 @@ const ItemsList = ({ setSelectedLink, link }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:4000/profile', { withCredentials: true });
+        const response = await axios.get('http://196.190.61.158:4000/profile', { withCredentials: true });
         setAuthState({ isAuthenticated: true, user: response.data });
       } catch (error) {
         setAuthState({ isAuthenticated: false, user: null });
@@ -50,7 +50,7 @@ const ItemsList = ({ setSelectedLink, link }) => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://127.0.0.1:4000/manage_items/${id}`)
+    axios.delete(`http://196.190.61.158:4000/manage_items/${id}`)
       .then(response => {
         setItems((prevItems) => prevItems.filter(item => item._id !== id));
       })

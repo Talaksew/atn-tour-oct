@@ -25,7 +25,7 @@ const Signup = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post('http://localhost:4000/signup', formData,{
+    const response = await axios.post('http://196.190.61.158:4000/signup', formData,{
       withCredentials: true, // Include this to ensure cookies are sent
       });
 
@@ -52,7 +52,7 @@ const handleChange = (e) => {
   
   const handleGoogleLogin = () => {
     // Implement your Google login logic here
-    window.location.href = 'http://localhost:4000/auth/google';
+    window.location.href = 'http://196.190.61.158:4000/auth/google';
   }
 
 

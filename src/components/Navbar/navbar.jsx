@@ -45,7 +45,7 @@ const Navbar = ({ onSearch }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/profile', { withCredentials: true });
+        const response = await axios.get('http://196.190.61.158:4000/profile', { withCredentials: true });
         if (response.status === 200) {
           setAuthState({
             isAuthenticated: true,
@@ -73,7 +73,7 @@ const Navbar = ({ onSearch }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:4000/logout', { withCredentials: true });
+      await axios.get('http://196.190.61.158:4000/logout', { withCredentials: true });
       setAuthState({
         isAuthenticated: false,
         user: null,

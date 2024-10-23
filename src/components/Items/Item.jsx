@@ -42,7 +42,7 @@ const [filter, setFilter] = useState('All');  // State for filter
 useEffect(() => {
   const checkAuthStatus = async () => {
       try {
-          const response = await axios.get('http://localhost:4000/profile', { withCredentials: true });
+          const response = await axios.get('http://196.190.61.158:4000/profile', { withCredentials: true });
           if (response.status === 200) {
               setAuthState({
                   isAuthenticated: true,
@@ -85,7 +85,7 @@ useEffect(() => {
   const handleSearch = async (searchQuery) => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:4000/items', {
+      const response = await axios.get('http://196.190.61.158:4000/items', {
         params: { q: searchQuery },
       });
       setItems(response.data);
@@ -100,7 +100,7 @@ useEffect(() => {
   const handleFilter = async (category) => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:4000/items', {
+      const response = await axios.get('http://196.190.61.158:4000/items', {
         params: { category },
       });
       setItems(response.data);
@@ -151,7 +151,7 @@ useEffect(() => {
                       width: '100%',  // Set the width to fill the card
                       objectFit: 'cover'  // Ensure the image covers the container
                     }}
-                 image={`http://localhost:4000${item.images[0]}`}
+                 image={`http://196.190.61.158:4000${item.images[0]}`}
                   alt={item.name}
                 />
               )}

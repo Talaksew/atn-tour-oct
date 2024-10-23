@@ -24,7 +24,7 @@ const AddHotel = () => {
 
     try {
       // Send hotel data to backend
-      const response = await axios.post('http://localhost:4000/addHotel', hotelData);
+      const response = await axios.post('http://196.190.61.158:4000/addHotel', hotelData);
 
       // Handle success
       console.log('Data inserted successfully:', response.data);

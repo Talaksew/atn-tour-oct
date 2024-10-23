@@ -15,7 +15,7 @@ const ItemsActions = ({ params, rowId, setRowId }) => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:3000/api/items/${params.row._id}`);
+      await axios.delete(`http://196.190.61.158:4000/items/${params.row._id}`);
       setLoading(false);
       // Handle successful deletion, e.g., refreshing the list of items
     } catch (error) {
@@ -28,7 +28,7 @@ const ItemsActions = ({ params, rowId, setRowId }) => {
     setLoading(true);
     try {
       const { role, active, _id } = params.row;
-      const response = await axios.put(`http://localhost:4000/api/items/${_id}`, { role, active });
+      const response = await axios.put(`http://196.190.61.158:4000/api/items/${_id}`, { role, active });
       if (response.status === 200) {
         setSuccess(true);
         setRowId(null);

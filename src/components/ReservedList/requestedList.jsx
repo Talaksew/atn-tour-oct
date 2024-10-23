@@ -24,7 +24,7 @@ const Users = ({ setSelectedLink, link }) => {
    
      const fetchUser = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:3000/api/users', { withCredentials: true });
+        const response = await axios.get('http://196.190.61.158:3000/api/users', { withCredentials: true });
        
           console.log('Items fetched successfully:', response.data);
            setUsers(response.data);
